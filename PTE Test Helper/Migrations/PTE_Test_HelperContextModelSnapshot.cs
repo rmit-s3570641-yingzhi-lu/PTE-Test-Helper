@@ -31,13 +31,9 @@ namespace PTE_Test_Helper.Migrations
 
                     b.Property<int>("ParentId");
 
-                    b.Property<int?>("ROID");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("ROID");
-
-                    b.ToTable("Paragraph");
+                    b.ToTable("Paragraphs");
                 });
 
             modelBuilder.Entity("PTE_Test_Helper.Models.RO", b =>
@@ -57,13 +53,6 @@ namespace PTE_Test_Helper.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("RO");
-                });
-
-            modelBuilder.Entity("PTE_Test_Helper.Models.Paragraph", b =>
-                {
-                    b.HasOne("PTE_Test_Helper.Models.RO")
-                        .WithMany("Paragraphs")
-                        .HasForeignKey("ROID");
                 });
 #pragma warning restore 612, 618
         }
