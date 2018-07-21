@@ -8,12 +8,12 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/css/bootstrap.css" />
+        <link href="~/css/site.css" rel="stylesheet" />
         <link href="~/css/customize.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/lib/css/bootstrap.min.css" />
-        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
         <link href="~/css/customize.css" rel="stylesheet" />
     </environment>
 </head>
@@ -29,29 +29,30 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Home")">RO</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Re-Order</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Home")">FIB</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Fill in Blank</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        @RenderBody()
-        <footer>
-            <div id="footer-bottom">
-                <div id="footer-bottom-inner" class="container">
-                    <div id="copyright">
-                        © 2018. Shallowpig. Personal  All rights reserved.
-                    </div><!-- #copyright -->
-                </div><!-- #footer-bottom-inner -->
-            </div>
-        </footer>
-    </div>
+<div class="container body-content">
+    @RenderBody()
+</div>
 
-    <environment include="Development">
+<footer>
+    <div id="footer-bottom">
+        <div id="footer-bottom-inner" class="container">
+            <div id="copyright">
+                © 2018. Shallowpig. Personal  All rights reserved.
+            </div><!-- #copyright -->
+        </div><!-- #footer-bottom-inner -->
+    </div>
+</footer>
+
+<environment include="Development">
         <script src="~/lib/js/jquery-3.3.1.js"></script>
         <script src="~/lib/js/bootstrap.bundle.js"></script>
         <script src="~/js/site.js"></script>
