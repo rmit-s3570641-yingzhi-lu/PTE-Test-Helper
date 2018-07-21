@@ -1,35 +1,56 @@
-﻿body {
+﻿/**********************************************
+*** GENERAL
+**********************************************/
+
+/*Import font online, in case local one unable to be read*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body {
+    color: #555;
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif, Open Sans;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+/*Footer CSS*/
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 52px;
     width: 100%;
+    text-align: center;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+#footer-bottom {
+    background-color: #621a4b;
+    color: #999999;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+#footer-bottom-inner {
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
+
+#copyright {
+    font-size: 15px;
+}
+
