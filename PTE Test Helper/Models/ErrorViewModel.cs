@@ -1,5 +1,3 @@
-using System;
-
 namespace PTE_Test_Helper.Models
 {
     public class ErrorViewModel
