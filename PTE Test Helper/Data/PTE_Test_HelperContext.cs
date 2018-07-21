@@ -15,5 +15,6 @@ namespace PTE_Test_Helper.Models
         }
 
         public DbSet<RO> RO { get; set; }
+        public DbSet<Paragraph> Paragraphs { get; set; }
     }
 }

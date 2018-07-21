@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations - Copy\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Migrations - Copy\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations - Copy\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations - Copy\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20180721123916_Initial2.cs" />
+    <Compile Include="Migrations\20180721123916_Initial2.Designer.cs" />
+    <Compile Include="Migrations\PTE_Test_HelperContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
   </ItemGroup>

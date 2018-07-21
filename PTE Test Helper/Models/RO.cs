@@ -15,9 +15,6 @@ namespace PTE_Test_Helper.Models
         [Display(Name = "If it is gist")]
         public bool IsComplete { get; set; }
 
-        //RO collection contains all paragraphs
-        public ICollection<Paragraph> Paragraphs { get; set; } = new List<Paragraph>();
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CreateDate { get; set; }
