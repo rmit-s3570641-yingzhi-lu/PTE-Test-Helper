@@ -20,8 +20,6 @@ namespace PTE_Test_Helper
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<PTE_Test_HelperContext>();
-                    context.Database.Migrate();
                     SeedSampleData.Initialize(services);
                 }
                 catch (Exception ex)

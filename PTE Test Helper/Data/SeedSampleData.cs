@@ -22,11 +22,11 @@ namespace PTE_Test_Helper.Data
                 {
                     new RO
                     {
-                        ID = 1,
+                        ArticleId = 1,
                         Title = "Indian IT",
                         IsComplete = true,
-                        CreateDate = DateTime.Today,
-                        UpdateDate = DateTime.Today,
+                        CreateDate = DateTime.Now,
+                        UpdateDate = DateTime.Now,
                     }
                 };
 

@@ -9,6 +9,8 @@ namespace PTE_Test_Helper.Models
         [Required]
         public int ID { get; set; }
 
+        public int ArticleId { get; set; }
+
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string Title { get; set; }
 

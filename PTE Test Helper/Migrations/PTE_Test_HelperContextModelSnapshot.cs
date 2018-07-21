@@ -41,6 +41,8 @@ namespace PTE_Test_Helper.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("ArticleId");
+
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<bool>("IsComplete");

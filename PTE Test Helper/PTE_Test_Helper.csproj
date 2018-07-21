@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\20180721123916_Initial2.cs" />
-    <Compile Include="Migrations\20180721123916_Initial2.Designer.cs" />
+    <Compile Include="Migrations\20180721130921_Initial.cs" />
+    <Compile Include="Migrations\20180721130921_Initial.Designer.cs" />
     <Compile Include="Migrations\PTE_Test_HelperContextModelSnapshot.cs" />
   </ItemGroup>
 
