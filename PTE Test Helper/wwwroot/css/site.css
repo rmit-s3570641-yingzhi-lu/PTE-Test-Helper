@@ -22,8 +22,14 @@ body {
     font-weight: 400;
 }
 
+@media (min-width: 1200px) {
+    .container-fluid {
+        max-width: 70%;
+    }
+}
+
 .body-content {
-    padding: 15px;
+    padding: 50px 15px;
 }
 
 
@@ -51,4 +57,3 @@ footer {
 #copyright {
     font-size: 15px;
 }
-

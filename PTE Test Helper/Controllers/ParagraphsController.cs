@@ -19,9 +19,9 @@ namespace PTE_Test_Helper.Controllers
         }
 
         // GET: Paragraphs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pid)
         {
-            return View(await _context.Paragraphs.ToListAsync());
+            return View(await _context.Paragraphs.Where(x => x.ParentId == pid).ToListAsync());
         }
 
         // GET: Paragraphs/Details/5

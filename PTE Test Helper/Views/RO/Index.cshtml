@@ -32,7 +32,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Index","Paragraphs")">
+                    <a href="@Url.Action("Index","Paragraphs",new {pid = item.ArticleId})">
                         @Html.DisplayFor(modelItem => item.Title)
                     </a>
                 </td>
