@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PTE_Test_Helper.Features;
 using PTE_Test_Helper.Models;
 
 namespace PTE_Test_Helper.Controllers
@@ -19,9 +20,52 @@ namespace PTE_Test_Helper.Controllers
         }
 
         // GET: RO
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? page)
         {
-            return View(await _context.RO.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "title_asc" : "";
+            ViewData["TitleSortParm"] = sortOrder == "title" ? "title_desc" : "title";
+
+            //pagination and search
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var reorderArticle = _context.RO.Select(x => x);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reorderArticle = reorderArticle.Where(x => x.Title.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "ID_desc":
+                    reorderArticle = reorderArticle.OrderByDescending(o => o.ID);
+                    break;
+                case "title":
+                    reorderArticle = reorderArticle.OrderBy(o => o.Title);
+                    break;
+                case "title_desc":
+                    reorderArticle = reorderArticle.OrderByDescending(o => o.Title);
+                    break;
+            }
+
+            //pagination code
+            int pageSize = 5;
+            return View(await PaginatedList<RO>
+                .CreateAsync(reorderArticle.AsNoTracking(), page ?? 1, pageSize));
+
         }
 
         // GET: RO/Details/5

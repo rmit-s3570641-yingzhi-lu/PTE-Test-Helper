@@ -48,14 +48,18 @@
         </tbody>
     </table>*@
 
+@{
+    var nextArticleId = Model.First().ParentId + 1;
+}
+
 <div>
-    <a asp-controller="RO" asp-action="Index">Back to Previous Page</a>
+    <a asp-controller="RO" asp-action="Index">返回</a>
+    <a asp-controller="Paragraphs" asp-action="Index" asp-route-pid="@nextArticleId" class="float-right">下一题</a>
 </div>
 
-<div class="row">
-
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model)
+{
+    <div class="row">
         <div class="col-lg-6">
             <div ondrop="drop(event)" ondragover="allowDrop(event)" class="drag-area">
                 <div draggable="true" ondragstart="drag(event)" id="drag-@item.ID">@Html.DisplayFor(modelItem => item.Content)</div>
@@ -64,9 +68,8 @@
         <div class="col-lg-6">
             <div ondrop="drop(event)" ondragover="allowDrop(event)" class="drag-area"></div>
         </div>
-    }
-</div>
-
+    </div>
+}
 
 <script>
     function allowDrop(ev) {

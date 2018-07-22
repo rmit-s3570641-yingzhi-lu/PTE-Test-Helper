@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PTE_Test_Helper.Models.RO>
+﻿
+@model PaginatedList<RO>
 
 @{
     ViewData["Title"] = "Reorder Paragraph";
@@ -7,22 +8,33 @@
 <h2>Reorder Paragraph</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">创建新记录</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            按文章标题搜索：<input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="搜索" class="btn btn-default" />
+            <a asp-action="Index"><input type="button" value="返回全部" class="btn btn-default" /></a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">文章标题</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsComplete)
+                是否确认原题
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                创建时间
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UpdateDate)
+                更新时间
             </th>
             <th></th>
         </tr>
@@ -46,11 +58,31 @@
                     @Html.DisplayFor(modelItem => item.UpdateDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ID">编辑</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">详细信息</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">删除</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+@* The paging buttons are displayed by tag helpers *@
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    上一页
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    下一页
+</a>
