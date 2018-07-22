@@ -1,50 +1,98 @@
-﻿@model PTE_Test_Helper.Models.RO
+﻿@model ROViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>创建新的RO练习文章</h2>
 
-<h4>RO</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group row">
+        <label asp-for="RoContent.Title" class="col-sm-2 col-form-label">文章标题*</label>
+        <div class="col-sm-5">
+            <input asp-for="RoContent.Title" class="form-control" />
+            <span asp-validation-for="RoContent.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-5">
+            <div class="form-check">
+                <input asp-for="RoContent.IsComplete" class="form-check-input" type="checkbox" value="" id="isCompleted" />
+                <label class="form-check-label" for="isCompleted">是否为原文</label>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsComplete" /> @Html.DisplayNameFor(model => model.IsComplete)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdateDate" class="control-label"></label>
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+
+    <div class="form-row">
+
+    </div>
+
+    <div class="form-group row paragraph">
+        <label class="col-sm-2 col-form-label">文章段落</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" style="height:100px" required></textarea>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-success" id="addParagraph">增加</button>
+        </div>
+    </div>
+
+    @*<div class="form-group row">
+            <label asp-for="RoContent.CreateDate" class="col-sm-2 col-form-label">创建日期</label>
+            <div class="col-sm-4">
+                <input asp-for="RoContent.CreateDate" class="form-control" />
+                <span asp-validation-for="RoContent.CreateDate" class="text-danger"></span>
+            </div>
+
+            <label asp-for="RoContent.UpdateDate" class="col-sm-1 col-form-label">更新日期</label>
+            <div class="col-sm-4">
+                <input asp-for="RoContent.UpdateDate" class="form-control" />
+                <span asp-validation-for="RoContent.UpdateDate" class="text-danger"></span>
+            </div>
+        </div>*@
+
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <a asp-action="Index" class="btn btn-secondary float-left">返回</a>
+        </div>
+        <div class="col-sm-7">
+            <input type="submit" value="创建" class="btn btn-secondary float-right" />
+        </div>
+    </div>
+</form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    var createController = (function () {
+        var addBtn = document.getElementById("addParagraph");
+        var html = '<div class="form-group row paragraph"><label class="col-sm-2 col-form-label">文章段落</label>' +
+            '<div class="col-sm-9"><textarea class="form-control" style="height:100px"></textarea></div>' +
+            '<div class="col-sm-1"><button type="button" class="btn btn-danger deleteParagraph">删除</button></div></div>';
+        return {
+            publicAddParagraph: function () {
+                addBtn.addEventListener('click', function () {
+                    var allParagraph = document.querySelectorAll(".paragraph");
+                    var lastParagraph = allParagraph[allParagraph.length - 1];
+                    lastParagraph.insertAdjacentHTML('afterend', html);
+                });
+            },
+
+            publicDeleteParagraph: function () {
+                $("body").delegate(".deleteParagraph", "click", function () {
+                    $(this).parent().parent().remove();
+                });
+            }
+        }
+    })();
+
+    createController.publicAddParagraph();
+    createController.publicDeleteParagraph();
+</script>

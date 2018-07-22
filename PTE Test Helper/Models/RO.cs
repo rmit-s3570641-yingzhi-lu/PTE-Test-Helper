@@ -9,12 +9,15 @@ namespace PTE_Test_Helper.Models
         [Required]
         public int ID { get; set; }
 
+        [Required]
         public int ArticleId { get; set; }
 
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [Required]
+        [StringLength(50, ErrorMessage = "文章标题不能超过50个英文字")]
         public string Title { get; set; }
 
-        [Display(Name = "If it is gist")]
+        [Display(Name = "是否原文")]
+        [Required]
         public bool IsComplete { get; set; }
 
         [DataType(DataType.Date)]

@@ -23,9 +23,10 @@ namespace PTE_Test_Helper.Controllers
         public async Task<IActionResult> Index(int? pid)
         {
             var currentArticle = _context.Paragraphs.Select(x => x);
-            if (pid > _context.RO.Last().ArticleId)
+            var roContent = await _context.RO.Select(x => x).ToListAsync();
+            if (pid > roContent.Last().ArticleId)
             {
-                pid = 1;
+                pid = roContent.First().ArticleId;
                 currentArticle = currentArticle.Where(x => x.ParentId == pid);
             }
             else

@@ -5,24 +5,26 @@
     ViewData["Title"] = "Reorder Paragraph";
 }
 
-<h2>Reorder Paragraph</h2>
-
-<p>
-    <a asp-action="Create">创建新记录</a>
-</p>
+<h2>Reorder Paragraph 练习</h2>
 
 <form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            按文章标题搜索：<input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="搜索" class="btn btn-default" />
-            <a asp-action="Index"><input type="button" value="返回全部" class="btn btn-default" /></a>
-        </p>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">按文章标题搜索：</label>
+        <div class="col-sm-4">
+            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <input type="submit" value="搜索" class="btn btn-outline-secondary" />
+            <a asp-action="Index" class="btn btn-outline-secondary">返回全部</a>
+        </div>
+        <div class="col-sm-3">
+            <a asp-action="Create" class="btn btn-outline-success float-right">创建新记录</a>
+        </div>
     </div>
 </form>
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
         <tr>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">文章标题</a>
@@ -76,13 +78,13 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled">
+   class="btn btn-outline-primary @prevDisabled">
     上一页
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @nextDisabled">
+   class="btn btn-outline-primary float-right @nextDisabled">
     下一页
 </a>
